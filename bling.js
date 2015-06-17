@@ -1,3 +1,4 @@
+/* bling.js */
 window.$ = document.querySelectorAll.bind(document)
 
 Node.prototype.on = function(name, fn){
@@ -10,7 +11,9 @@ Node.prototype.find = function(query){
 	return this;
 };
 
+
 NodeList.prototype.__proto__ = Array.prototype;
+
 NodeList.prototype.on = NodeList.prototype.addEventListener = function(name, fn){
 	this.forEach(function(elem, i){
 		elem.on(name, fn)
@@ -29,10 +32,10 @@ Node.prototype.addClass = function(className){
 }
 Node.prototype.removeClass = function(className){
 	if(this.hasClass(className)){
-		var classNames = this.className.split(' ');
-		var idx = classNames.indexOf(className);
-		if(idx > -1) classNames.splice(idx, 1);
-		this.className = classNames.join(' ');
+		this.className = this.className.split(' ').reduce(function(r, cn){
+			if(cn !== className) r.push(cn);
+			return r;
+		}, []).join(' ');
 	}
 	return this;
 }
