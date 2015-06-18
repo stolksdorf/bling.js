@@ -22,20 +22,19 @@ NodeList.prototype.on = NodeList.prototype.addEventListener = function(name, fn)
 };
 
 //Classes
-
-Node.prototype.hasClass = function(className){
-	return this.className.indexOf(className) !== -1;
-}
-Node.prototype.addClass = function(className){
-	if(!this.hasClass(className)) this.className += ' ' + className;
+Node.prototype.addClass = function(cn){
+	this.classList.add(cn);
 	return this;
 }
-Node.prototype.removeClass = function(className){
-	if(this.hasClass(className)){
-		this.className = this.className.split(' ').reduce(function(r, cn){
-			if(cn !== className) r.push(cn);
-			return r;
-		}, []).join(' ');
-	}
+Node.prototype.removeClass = function(cn){
+	this.classList.remove(cn);
+	return this;
+}
+Node.prototype.toggleClass = function(cn){
+	this.classList.toggle(cn);
+	return this;
+}
+Node.prototype.hasClass = function(cn){
+	this.classList.contains(cn);
 	return this;
 }
