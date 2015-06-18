@@ -35,6 +35,5 @@ Node.prototype.toggleClass = function(cn){
 	return this;
 }
 Node.prototype.hasClass = function(cn){
-	this.classList.contains(cn);
-	return this;
+	return this.classList.contains(cn);
 }
