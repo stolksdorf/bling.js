@@ -8,7 +8,6 @@ Node.prototype.on = function(name, fn){
 
 Node.prototype.find = function(query){
 	return this.querySelectorAll(query);
-	return this;
 };
 
 
