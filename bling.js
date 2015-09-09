@@ -36,3 +36,33 @@ Node.prototype.toggleClass = function(cn){
 Node.prototype.hasClass = function(cn){
 	return this.classList.contains(cn);
 }
+
+
+//Ajax
+$.get = function(url, onSuccess, onError){
+	onError = onError || function(){};
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		if (xhr.readyState==4){
+			if(xhr.status==200){ onSuccess(xhr.responseText); }
+			else{ onError(xhr.statusText); }
+		}
+	}
+	xhr.open("GET",url,true);
+	xhr.send();
+}
+
+$.post = function(url, data, onSuccess, onError){
+	data = data || {};
+	onError = onError || function(){};
+	var xhr = new XMLHttpRequest();
+	xhr.onreadystatechange=function(){
+		if (xhr.readyState==4){
+			if(xhr.status==200){ onSuccess(xhr.responseText); }
+			else{ onError(xhr.statusText); }
+		}
+	}
+	xhr.open("POST",url,true);
+	xhr.setRequestHeader('Content-Type', 'application/json; charset=UTF-8');
+	xhr.send(JSON.stringify(data));
+}
